@@ -33,7 +33,7 @@ function createWrapper (service, name) {
       return
     }
 
-    return service[name].apply(service, hook.data.arguments)
+    return service[name].apply(service, [].concat(hook.data.arguments, hook.params))
       .then(result => {
         hook.result = result
         return hook
